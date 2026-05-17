@@ -31,7 +31,7 @@ const SUB_OPTIONS = {
 };
 
 const sendConfirmationEmail = (user, details, timeStr, method) => {
-  const url = import.meta.env.VITE_N8N_WEBHOOK_URL || 'https://workflow.ccbp.in/webhook-test/confirmation-booking-mail';
+  const url = import.meta.env.VITE_N8N_WEBHOOK_URL || 'https://workflow.ccbp.in/webhook/confirmation-booking-mail';
   if (!url || url === 'YOUR_N8N_WEBHOOK_URL_HERE') return;
 
   fetch(url, {
