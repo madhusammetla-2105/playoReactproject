@@ -32,7 +32,7 @@ const SUB_OPTIONS = {
 
 const sendConfirmationEmail = (user, details, timeStr, method) => {
   const url = import.meta.env.VITE_N8N_WEBHOOK_URL;
-  if (!url || url === 'YOUR_N8N_WEBHOOK_URL_HERE') return;
+  if (!url || url === 'https://workflow.ccbp.in/webhook-test/confirmation-booking-mail') return;
 
   fetch(url, {
     method: 'POST',
@@ -79,7 +79,6 @@ export default function Payment() {
     try {
       const finalMethod = subMethod || paymentMethod;
       await createBooking({ groundId: id, date: bookingDetails.date, time: timeStr, totalPrice: bookingDetails.price, paymentMethod: finalMethod });
-      sendConfirmationEmail(user, bookingDetails, timeStr, finalMethod);
       setIsSuccess(true);
     } catch {
       alert("Something went wrong with the booking. Please try again.");
@@ -89,6 +88,8 @@ export default function Payment() {
   };
 
   const handleDone = () => {
+    const finalMethod = subMethod || paymentMethod;
+    sendConfirmationEmail(user, bookingDetails, timeStr, finalMethod);
     alert(`Email sent to ${user?.email}:\n\nYou have blocked ${displayTime} on ${bookingDetails.date} in ${bookingDetails.groundName}.`);
     navigate('/dashboard', { replace: true });
   };
@@ -98,7 +99,7 @@ export default function Payment() {
       <CheckCircle size={48} className="mx-auto text-primary bg-primary/20 p-2 rounded-full w-24 h-24" />
       <h1 className="text-3xl font-bold text-textWhite">Booking Confirmed!</h1>
       <p className="text-textGray">Your booking for {bookingDetails.groundName} has been secured.</p>
-      
+
       {paymentMethod === 'Pay at Venue' && (
         <div className="bg-bgDark p-4 rounded-xl border border-borderColor mt-4">
           <p className="text-textWhite font-medium">Payment Method: Pay at Venue</p>
