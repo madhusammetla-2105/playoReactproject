@@ -61,13 +61,39 @@ export default function Payment() {
     await new Promise(resolve => setTimeout(resolve, paymentMethod === 'Pay at Venue' ? 500 : 1500));
     
     try {
+      const timeStr = bookingDetails.slots.map(s => s.time).join(', ');
+      
       await createBooking({
         groundId: id,
         date: bookingDetails.date,
-        time: bookingDetails.slots.map(s => s.time).join(', '),
+        time: timeStr,
         totalPrice: bookingDetails.price,
         paymentMethod: subMethod || paymentMethod
       });
+      
+      // Trigger n8n webhook for email notification asynchronously (don't block the UI)
+      const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL || 'YOUR_N8N_WEBHOOK_URL_HERE';
+      if (webhookUrl && webhookUrl !== 'YOUR_N8N_WEBHOOK_URL_HERE') {
+        fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userName: user?.name || user?.email?.split('@')[0] || 'Player',
+            userEmail: user?.email,
+            groundName: bookingDetails.groundName,
+            date: bookingDetails.date,
+            time: timeStr,
+            price: bookingDetails.price,
+            paymentMethod: subMethod || paymentMethod,
+            bookingId: Math.floor(100000 + Math.random() * 900000).toString(), // mock booking reference
+          }),
+        }).catch(err => console.warn('Failed to send booking confirmation webhook to n8n:', err));
+      } else {
+        console.warn('n8n Webhook URL is not set. Please set VITE_N8N_WEBHOOK_URL in your environment variables.');
+      }
+      
       setIsSuccess(true);
     } catch (err) {
       alert("Something went wrong with the booking. Please try again.");

@@ -76,11 +76,11 @@ export default function GroundDetails() {
         return x - Math.floor(x);
     };
 
-    // Determine if the date is within the next 3 days
+    // Determine if the date is within the next 3 days (including the day itself)
     const today = new Date();
     const dateObj = new Date(date);
     const diffDays = Math.floor((dateObj - today) / (1000 * 60 * 60 * 24));
-    const forceBook = diffDays >= 0 && diffDays < 3;
+    const forceBook = diffDays >= 0 && diffDays <= 3;
 
     for (let i = startHour; i < endHour; i++) {
       const period = i >= 12 ? 'PM' : 'AM';
