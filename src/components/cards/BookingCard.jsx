@@ -4,14 +4,14 @@ export default function BookingCard({ booking, groundName, onCancel, showCancel 
   const isCancelled = booking.status === 'cancelled';
 
   return (
-    <div className={`bg-cardBg p-5 rounded-2xl border ${isCancelled ? 'border-red-900/50 opacity-70' : 'border-gray-800 shadow-lg'}`}>
+    <div className={`bg-cardBg p-5 rounded-2xl border ${isCancelled ? 'border-red-900/50 opacity-70' : 'border-borderColor shadow-lg'}`}>
       <div className="flex justify-between items-start mb-4">
         <h4 className="text-xl font-bold text-textWhite">{groundName || "Ground Booking"}</h4>
         <span className={`text-xs px-3 py-1.5 rounded-full font-bold ${isCancelled ? 'bg-red-900/30 text-red-400' : 'bg-primary/20 text-primary'}`}>
           {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
         </span>
       </div>
-      <div className="space-y-3 text-sm text-textGray mb-5 bg-bgDark p-4 rounded-xl border border-gray-800/50">
+      <div className="space-y-3 text-sm text-textGray mb-5 bg-bgDark p-4 rounded-xl border border-borderColor/50">
         <div className="flex items-center gap-3">
           <Calendar size={18} className="text-primary/70" />
           <span className="font-medium">{booking.date || "TBD"}</span>
@@ -26,9 +26,9 @@ export default function BookingCard({ booking, groundName, onCancel, showCancel 
             {booking.paymentMethod ? `Paid via ${booking.paymentMethod}` : 'Standard Payment'}
           </span>
         </div>
-        <div className="pt-3 mt-3 border-t border-gray-800 flex justify-between items-center text-textWhite font-bold text-base">
+        <div className="pt-3 mt-3 border-t border-borderColor flex justify-between items-center text-textWhite font-bold text-base">
           <span>Total Amount:</span>
-          <span className="text-primary text-lg">₺{booking.totalPrice || 0}</span>
+          <span className="text-primary text-lg">₹{booking.totalPrice || 0}</span>
         </div>
       </div>
       

@@ -27,7 +27,7 @@ function ProfileTab({ user, updateUser }) {
   };
 
   return (
-    <div className="bg-cardBg p-6 rounded-xl border border-gray-800 max-w-xl relative">
+    <div className="bg-cardBg p-6 rounded-xl border border-borderColor max-w-xl relative">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold text-textWhite">Profile Information</h2>
         {!isEditing && (
@@ -48,11 +48,11 @@ function ProfileTab({ user, updateUser }) {
               type="text"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 bg-bgDark border border-gray-700 rounded-xl text-textWhite focus:outline-none focus:border-primary transition-colors"
+              className="w-full px-4 py-3 bg-bgDark border border-borderColor rounded-xl text-textWhite focus:outline-none focus:border-primary transition-colors"
               required
             />
           ) : (
-            <div className="p-3 bg-bgDark rounded border border-gray-700 text-textWhite">{user?.name}</div>
+            <div className="p-3 bg-bgDark rounded border border-borderColor text-textWhite">{user?.name}</div>
           )}
         </div>
         <div>
@@ -62,16 +62,16 @@ function ProfileTab({ user, updateUser }) {
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-4 py-3 bg-bgDark border border-gray-700 rounded-xl text-textWhite focus:outline-none focus:border-primary transition-colors"
+              className="w-full px-4 py-3 bg-bgDark border border-borderColor rounded-xl text-textWhite focus:outline-none focus:border-primary transition-colors"
               required
             />
           ) : (
-            <div className="p-3 bg-bgDark rounded border border-gray-700 text-textWhite">{user?.email}</div>
+            <div className="p-3 bg-bgDark rounded border border-borderColor text-textWhite">{user?.email}</div>
           )}
         </div>
         <div>
           <label className="block text-sm font-medium text-textGray mb-1">Role</label>
-          <div className="p-3 bg-bgDark/50 rounded border border-gray-700 text-textGray capitalize">{user?.role}</div>
+          <div className="p-3 bg-bgDark/50 rounded border border-borderColor text-textGray capitalize">{user?.role}</div>
         </div>
 
         {isEditing && (
@@ -117,7 +117,7 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8">
-      <div className="bg-cardBg p-8 rounded-2xl border border-gray-800 flex items-center justify-between">
+      <div className="bg-cardBg p-8 rounded-2xl border border-borderColor flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-textWhite">Welcome back, {user?.name}!</h1>
           <p className="text-textGray mt-2">Manage your bookings and account settings here.</p>
@@ -127,7 +127,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="flex gap-4 border-b border-gray-800 pb-2">
+      <div className="flex gap-4 border-b border-borderColor pb-2">
         <button 
           onClick={() => setActiveTab('bookings')}
           className={`px-4 py-2 font-medium transition-colors ${activeTab === 'bookings' ? 'text-primary border-b-2 border-primary' : 'text-textGray hover:text-textWhite'}`}
@@ -167,7 +167,7 @@ export default function Dashboard() {
                 ))}
               </div>
             ) : (
-              <div className="bg-cardBg p-8 rounded-xl border border-gray-800 text-center">
+              <div className="bg-cardBg p-8 rounded-xl border border-borderColor text-center">
                 <p className="text-textGray">You have no active bookings.</p>
               </div>
             )}
@@ -179,7 +179,7 @@ export default function Dashboard() {
         )}
 
         {activeTab === 'admin' && user?.role === 'admin' && (
-          <div className="bg-cardBg p-6 rounded-xl border border-gray-800">
+          <div className="bg-cardBg p-6 rounded-xl border border-borderColor">
              <h2 className="text-xl font-bold text-textWhite mb-4">Admin Dashboard</h2>
              <p className="text-textGray">Welcome to the admin panel. Platform management features will be implemented here.</p>
           </div>

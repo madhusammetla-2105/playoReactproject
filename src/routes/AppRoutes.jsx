@@ -9,6 +9,10 @@ import Login from '../pages/Auth/Login';
 import Register from '../pages/Auth/Register';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import ProtectedRoute from './ProtectedRoute';
+import AboutUs from '../pages/Static/AboutUs';
+import Contact from '../pages/Static/Contact';
+import TermsOfService from '../pages/Static/TermsOfService';
+import ScrollToTop from '../components/common/ScrollToTop';
 
 // Placeholders for other pages
 const Placeholder = ({ title }) => <div className="p-4"><h1 className="text-2xl text-primary">{title}</h1><p className="text-textGray mt-2">This page is under construction.</p></div>;
@@ -16,6 +20,7 @@ const Placeholder = ({ title }) => <div className="p-4"><h1 className="text-2xl 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
@@ -30,6 +35,9 @@ export default function AppRoutes() {
               <Dashboard />
             </ProtectedRoute>
           } />
+          <Route path="about" element={<AboutUs />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="terms" element={<TermsOfService />} />
           <Route path="*" element={<Placeholder title="404 Not Found" />} />
         </Route>
       </Routes>

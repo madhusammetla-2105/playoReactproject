@@ -1,4 +1,4 @@
-export const groundsData = [
+const rawGroundsData = [
   {
     id: "1",
     name: "Hit Zone Box Cricket",
@@ -358,5 +358,195 @@ export const groundsData = [
     image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&q=80&w=1000",
     description: "Well-maintained box cricket arena in Amberpet with floodlights.",
     amenities: ["Floodlights", "Washrooms", "Seating"]
+  },
+  {
+    id: "31",
+    name: "Gachibowli Stadium Turf",
+    city: "Hyderabad",
+    location: "Gachibowli, Hyderabad",
+    type: "Professional Ground",
+    pricePerHour: 2500,
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?auto=format&fit=crop&q=80&w=1000",
+    description: "High-quality professional turf for football and cricket located near the stadium.",
+    amenities: ["Professional Turf", "Parking", "Floodlights"]
+  },
+  {
+    id: "32",
+    name: "Kondapur Sports Hub",
+    city: "Hyderabad",
+    location: "Kondapur, Hyderabad",
+    type: "Box Cricket",
+    pricePerHour: 1300,
+    rating: 4.5,
+    image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&q=80&w=1000",
+    description: "Centrally located in Kondapur, offering top-notch box cricket facilities.",
+    amenities: ["Floodlights", "Parking", "Water Facility"]
+  },
+  {
+    id: "33",
+    name: "Uppal Cricket Nets",
+    city: "Hyderabad",
+    location: "Uppal, Hyderabad",
+    type: "Indoor Nets",
+    pricePerHour: 1100,
+    rating: 4.4,
+    image: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?auto=format&fit=crop&q=80&w=1000",
+    description: "Quality indoor practice nets for cricketers in the Uppal area.",
+    amenities: ["Indoor Nets", "Coaching", "Washrooms"]
+  },
+  {
+    id: "34",
+    name: "Banjara Hills Elite Turf",
+    city: "Hyderabad",
+    location: "Banjara Hills, Hyderabad",
+    type: "Premium Arena",
+    pricePerHour: 2000,
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1552667466-07770ae110d0?auto=format&fit=crop&q=80&w=1000",
+    description: "Luxury sports experience in the heart of Banjara Hills.",
+    amenities: ["Valet Parking", "Premium Turf", "Lounge"]
+  },
+  {
+    id: "35",
+    name: "Banjara Sports Club",
+    city: "Hyderabad",
+    location: "Banjara Hills, Hyderabad",
+    type: "Multi-Sport",
+    pricePerHour: 1500,
+    rating: 4.3,
+    image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&q=80&w=1000",
+    description: "A versatile club in Banjara Hills for multiple sports activities.",
+    amenities: ["Floodlights", "Changing Rooms", "Cafe"]
+  },
+  {
+    id: "36",
+    name: "Jubilee Hills Sports Arena",
+    city: "Hyderabad",
+    location: "Jubilee Hills, Hyderabad",
+    type: "Premium Arena",
+    pricePerHour: 2200,
+    rating: 4.7,
+    image: "https://images.unsplash.com/photo-1431324155629-1a6eda1eed2d?auto=format&fit=crop&q=80&w=1000",
+    description: "State-of-the-art sports arena located in the upscale Jubilee Hills.",
+    amenities: ["High-End Lighting", "Parking", "Refreshments"]
+  },
+  {
+    id: "37",
+    name: "Jubilee Box Cricket",
+    city: "Hyderabad",
+    location: "Jubilee Hills, Hyderabad",
+    type: "Box Cricket",
+    pricePerHour: 1600,
+    rating: 4.4,
+    image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&q=80&w=1000",
+    description: "Exciting box cricket matches in the vibrant Jubilee Hills area.",
+    amenities: ["Floodlights", "Seating", "Parking"]
+  },
+  {
+    id: "38",
+    name: "Kukatpally Smash Arena",
+    city: "Hyderabad",
+    location: "Kukatpally, Hyderabad",
+    type: "Multi-Sport",
+    pricePerHour: 1400,
+    rating: 4.2,
+    image: "https://images.unsplash.com/photo-1587280501635-a19de238a81e?auto=format&fit=crop&q=80&w=1000",
+    description: "Popular multi-sport destination in the bustling Kukatpally area.",
+    amenities: ["Parking", "Floodlights", "Washrooms"]
+  },
+  {
+    id: "39",
+    name: "Kukatpally Box Cricket",
+    city: "Hyderabad",
+    location: "Kukatpally, Hyderabad",
+    type: "Box Cricket",
+    pricePerHour: 1200,
+    rating: 4.3,
+    image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&q=80&w=1000",
+    description: "Well-connected and affordable box cricket turf in Kukatpally.",
+    amenities: ["Floodlights", "Water Facility"]
+  },
+  {
+    id: "40",
+    name: "Manikonda Multi-Sport Arena",
+    city: "Hyderabad",
+    location: "Manikonda, Hyderabad",
+    type: "Multi-Sport",
+    pricePerHour: 1450,
+    rating: 4.1,
+    image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&q=80&w=1000",
+    description: "A great new arena in Manikonda for cricket and football lovers.",
+    amenities: ["Floodlights", "Parking", "Cafe"]
   }
 ];
+
+// Curated review pool for realistic mock user feedback
+const reviewsPool = [
+  { user: "Rahul Sharma", comment: "Absolutely loved the turf quality. The lighting is perfect for night matches!", date: "2026-05-12" },
+  { user: "Vikram Reddy", comment: "Very good place for box cricket. The height of the nets is excellent.", date: "2026-05-10" },
+  { user: "Priya Patel", comment: "Superb maintenance. Parking space is a bit limited but the court is top-class.", date: "2026-05-09" },
+  { user: "Anil Kumar", comment: "Decent pricing and well-maintained. Washrooms are clean.", date: "2026-05-08" },
+  { user: "Suresh Raina", comment: "Best box cricket arena in this area. Highly recommended!", date: "2026-05-05" },
+  { user: "Karthik G", comment: "Good turf but slightly expensive during peak hours.", date: "2026-05-01" },
+  { user: "Meera Naidu", comment: "Nice environment and friendly staff. Had a great time with family.", date: "2026-04-28" },
+  { user: "Tarun K.", comment: "Excellent bounce on the turf. Had a great 2-hour game.", date: "2026-05-14" },
+  { user: "Divya S.", comment: "Beautifully managed facility, super easy booking process.", date: "2026-05-13" },
+  { user: "Sandeep V.", comment: "Excellent lighting. Playing under lights here is awesome.", date: "2026-05-11" }
+];
+
+export const groundsData = rawGroundsData.map(ground => {
+  // 1. Assign highly realistic generated local image based on the turf's category/name
+  let assignedImage = "/images/football_turf_1.png"; // default
+  
+  const typeLower = ground.type.toLowerCase();
+  const nameLower = ground.name.toLowerCase();
+
+  if (nameLower.includes("rooftop") || nameLower.includes("inorbit") || typeLower.includes("rooftop")) {
+    assignedImage = "/images/rooftop_turf_1.png";
+  } else if (typeLower.includes("box cricket") || nameLower.includes("box cricket")) {
+    assignedImage = "/images/box_cricket_1.png";
+  } else if (typeLower.includes("indoor") || typeLower.includes("nets") || nameLower.includes("indoor") || nameLower.includes("nets")) {
+    assignedImage = "/images/indoor_nets_1.png";
+  } else if (typeLower.includes("professional") || typeLower.includes("stadium") || typeLower.includes("cricket ground") || nameLower.includes("ground") || nameLower.includes("stadium")) {
+    assignedImage = "/images/premium_stadium_1.png";
+  } else {
+    assignedImage = "/images/football_turf_1.png";
+  }
+
+  // 2. Generate deterministic reviews based on ground's ID to populate the UI realistically
+  const idNum = parseInt(ground.id) || 1;
+  const reviewCount = (idNum % 3) + 2; // Each ground gets 2 to 4 reviews
+  const reviews = [];
+
+  for (let i = 0; i < reviewCount; i++) {
+    const poolIndex = (idNum + i * 7) % reviewsPool.length;
+    const baseReview = reviewsPool[poolIndex];
+    
+    // Assign a rating close to the ground's average rating (e.g., ground.rating - 0.5 to ground.rating + 0.5)
+    let reviewRating = Math.round(ground.rating);
+    if (i === 0) reviewRating = Math.ceil(ground.rating);
+    if (i === 1) reviewRating = Math.floor(ground.rating);
+    reviewRating = Math.max(1, Math.min(5, reviewRating));
+
+    reviews.push({
+      id: `${ground.id}-r-${i}`,
+      user: baseReview.user,
+      rating: reviewRating,
+      comment: baseReview.comment,
+      date: baseReview.date
+    });
+  }
+
+  // Recalculate average rating of the reviews to be mathematically consistent
+  const averageRating = parseFloat(
+    (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+  );
+
+  return {
+    ...ground,
+    image: assignedImage,
+    reviews: reviews,
+    rating: averageRating // Synchronize actual rating with review average
+  };
+});

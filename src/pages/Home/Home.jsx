@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import Button from '../../components/common/Button';
+import { useAuth } from '../../hooks/useContexts';
 
 export default function Home() {
+  const { user } = useAuth();
+  
   return (
     <div className="space-y-16">
       {/* Hero Section */}
@@ -26,26 +29,33 @@ export default function Home() {
             <Link to="/grounds">
               <Button variant="primary" className="text-lg px-8 py-3">Find Grounds</Button>
             </Link>
-            <Link to="/login">
-              <Button variant="outline" className="text-lg px-8 py-3 bg-bgDark/50 backdrop-blur-sm">Join Now</Button>
-            </Link>
+            {!user && (
+              <Link to="/login">
+                <Button variant="outline" className="text-lg px-8 py-3 bg-bgDark/50 backdrop-blur-sm">Join Now</Button>
+              </Link>
+            )}
+            {user && (
+              <Link to="/dashboard">
+                <Button variant="outline" className="text-lg px-8 py-3 bg-bgDark/50 backdrop-blur-sm">My Dashboard</Button>
+              </Link>
+            )}
           </div>
         </div>
       </section>
 
       {/* Features Section */}
       <section className="grid md:grid-cols-3 gap-8 py-8">
-        <div className="bg-cardBg p-6 rounded-2xl border border-gray-800 hover:border-primary/50 transition-colors">
+        <div className="bg-cardBg p-6 rounded-2xl border border-borderColor hover:border-primary/50 transition-colors">
           <div className="w-12 h-12 bg-primary/20 text-primary rounded-lg flex items-center justify-center mb-4 text-xl font-bold">1</div>
           <h3 className="text-xl font-semibold mb-2">Search</h3>
           <p className="text-textGray">Browse through our curated list of premium cricket grounds with real-time availability.</p>
         </div>
-        <div className="bg-cardBg p-6 rounded-2xl border border-gray-800 hover:border-primary/50 transition-colors">
+        <div className="bg-cardBg p-6 rounded-2xl border border-borderColor hover:border-primary/50 transition-colors">
           <div className="w-12 h-12 bg-primary/20 text-primary rounded-lg flex items-center justify-center mb-4 text-xl font-bold">2</div>
           <h3 className="text-xl font-semibold mb-2">Book</h3>
           <p className="text-textGray">Secure your spot instantly with our easy-to-use booking system and secure payments.</p>
         </div>
-        <div className="bg-cardBg p-6 rounded-2xl border border-gray-800 hover:border-primary/50 transition-colors">
+        <div className="bg-cardBg p-6 rounded-2xl border border-borderColor hover:border-primary/50 transition-colors">
           <div className="w-12 h-12 bg-primary/20 text-primary rounded-lg flex items-center justify-center mb-4 text-xl font-bold">3</div>
           <h3 className="text-xl font-semibold mb-2">Play</h3>
           <p className="text-textGray">Gather your team, head to the ground, and enjoy a seamless cricketing experience.</p>

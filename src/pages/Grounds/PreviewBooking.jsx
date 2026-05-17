@@ -21,7 +21,7 @@ export default function PreviewBooking() {
 
   return (
     <div className="max-w-3xl mx-auto py-12 px-4">
-      <div className="bg-cardBg rounded-3xl border border-gray-800 shadow-2xl overflow-hidden">
+      <div className="bg-cardBg rounded-3xl border border-borderColor shadow-2xl overflow-hidden">
         
         {/* Venue Image Header */}
         <div className="h-64 w-full relative">
@@ -38,7 +38,7 @@ export default function PreviewBooking() {
         </div>
 
         <div className="p-8 space-y-6">
-          <div className="space-y-6 bg-bgDark p-6 rounded-2xl border border-gray-800">
+          <div className="space-y-6 bg-bgDark p-6 rounded-2xl border border-borderColor">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary shrink-0">
                 <MapPin size={24} />
@@ -69,7 +69,7 @@ export default function PreviewBooking() {
                 <p className="text-sm text-textGray font-medium">Time Slots ({bookingDetails.slots.length} Hour{bookingDetails.slots.length > 1 ? 's' : ''})</p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {bookingDetails.slots.map(slot => (
-                    <span key={slot.id} className="bg-cardBg border border-gray-700 px-3 py-1 rounded-lg text-sm text-primary font-medium">
+                    <span key={slot.id} className="bg-cardBg border border-borderColor px-3 py-1 rounded-lg text-sm text-primary font-medium">
                       {slot.time}
                     </span>
                   ))}
@@ -77,12 +77,12 @@ export default function PreviewBooking() {
               </div>
             </div>
 
-            <div className="pt-6 border-t border-gray-800 flex items-center justify-between">
+            <div className="pt-6 border-t border-borderColor flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Wallet className="text-textGray" size={20} />
                 <span className="text-textGray font-medium">Total Amount Due</span>
               </div>
-              <span className="text-3xl font-bold text-primary">₺{bookingDetails.price}</span>
+              <span className="text-3xl font-bold text-primary">₹{bookingDetails.price}</span>
             </div>
           </div>
 
