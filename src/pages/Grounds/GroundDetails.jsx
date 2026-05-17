@@ -57,11 +57,11 @@ export default function GroundDetails() {
   // Memoize slots to freeze booked ones and add random "Offline" status
   const slots = useMemo(() => {
     const slotsArr = [];
-    
+
     // Find all active bookings for this ground and date
     const bookedForDay = allBookings
       .filter(b => b.groundId === id && b.date === date && b.status !== 'cancelled');
-    
+
     // Create a set of booked time strings for quick lookup
     const bookedTimes = new Set();
     bookedForDay.forEach(b => {
@@ -76,24 +76,33 @@ export default function GroundDetails() {
         return x - Math.floor(x);
     };
 
+    // Determine if the date is within the next 3 days
+    const today = new Date();
+    const dateObj = new Date(date);
+    const diffDays = Math.floor((dateObj - today) / (1000 * 60 * 60 * 24));
+    const forceBook = diffDays >= 0 && diffDays < 3;
+
     for (let i = startHour; i < endHour; i++) {
       const period = i >= 12 ? 'PM' : 'AM';
       const hour12 = i > 12 ? i - 12 : (i === 0 ? 12 : i);
       const nextHour = i + 1;
       const nextHour12 = nextHour > 12 ? nextHour - 12 : (nextHour === 0 ? 12 : nextHour);
       const nextPeriod = nextHour >= 12 && nextHour < 24 ? 'PM' : 'AM';
-      
+
       const timeStr = `${hour12 < 10 ? '0' + hour12 : hour12}:00 ${period} - ${nextHour12 < 10 ? '0' + nextHour12 : nextHour12}:00 ${nextPeriod}`;
-      
+
       const isBooked = bookedTimes.has(timeStr);
       // Randomly freeze 15% of slots as "Offline" (consistent for this ground/date)
       const isRandomlyFrozen = !isBooked && seededRandom(parseInt(seed) + i) < 0.15;
 
+      // Force book first two slots for dates within next 3 days
+      const isForceBooked = forceBook && (i === startHour || i === startHour + 1);
+
       slotsArr.push({
         id: i,
         time: timeStr,
-        isAvailable: !isBooked && !isRandomlyFrozen,
-        status: isBooked ? 'Booked' : (isRandomlyFrozen ? 'Offline' : 'Available')
+        isAvailable: !(isBooked || isRandomlyFrozen || isForceBooked),
+        status: isForceBooked ? 'Booked' : (isBooked ? 'Booked' : (isRandomlyFrozen ? 'Offline' : 'Available'))
       });
     }
     return slotsArr;
